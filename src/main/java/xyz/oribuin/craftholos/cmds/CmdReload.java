@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import xyz.oribuin.craftholos.CraftHolograms;
-import xyz.oribuin.craftholos.persist.Ch;
+import xyz.oribuin.craftholos.persist.Chat;
 
 public class CmdReload implements CommandExecutor {
     CraftHolograms plugin;
@@ -28,7 +28,7 @@ public class CmdReload implements CommandExecutor {
              * Print "no-permission" message to the player.
              */
             if (!player.hasPermission("craftholo.reload")) {
-                player.sendMessage(Ch.cl(config.getString("no-permission")));
+                player.sendMessage(Chat.cl(config.getString("no-permission")));
                 return true;
             }
         }
@@ -39,9 +39,9 @@ public class CmdReload implements CommandExecutor {
             HologramsAPI.getHolograms(plugin).forEach(Hologram::delete);
         }
 
-        sender.sendMessage(Ch.cl(config.getString("reload").replaceAll("\\{version}", plugin.getDescription().getVersion())));
+        sender.sendMessage(Chat.cl(config.getString("reload").replaceAll("\\{version}", plugin.getDescription().getVersion())));
         // Notify Console that the plugin was reloaded.
-        Bukkit.getConsoleSender().sendMessage(Ch.cl("&bReloaded " + plugin.getDescription().getName() + " &f(&b" + plugin.getDescription().getVersion() + "&f)"));
+        Bukkit.getConsoleSender().sendMessage(Chat.cl("&bReloaded " + plugin.getDescription().getName() + " &f(&b" + plugin.getDescription().getVersion() + "&f)"));
         return true;
     }
 

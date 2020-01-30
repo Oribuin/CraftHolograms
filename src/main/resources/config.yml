@@ -2,7 +2,7 @@
 # | CraftHolograms by Oribuin |
 # | Display the item crafted above a workbench. |
 #
-# https://github.com/Oribuin/ItemSettings/
+# https://github.com/Oribuin/CraftHolograms/
 
 # Should the plugin be enabled?
 # Default: true
@@ -17,20 +17,25 @@ disabled-worlds:
 # Default: 5
 duration: 5
 
-# Should there be the item displayed above the hologram?
+# The Y level the hologram will be placed at
+# Default: 2.5
+y-axis: 2.5
+
+# Should the hologram be deleted if the crafting table is destroyed?
+# Default: true
+sync-holograms: true
+
+# Should the item crafted by displayed under the text?
 # Default: true
 item-display: true
 
-# Should there be a message saying the name of the item crafted in the hologram?
-# Default: true
-name-display: true
-
-# The hologram name message
-# Placeholder:
-# {result} represents the item craft name
-format: '&7Crafted {result}'
+# Hologram Format (Supports PlaceholderAPI)
+# Result Item Name Placeholder: {result}
+hologram-format:
+  - '&7[&bCraftHolograms&7]'
+  - '&c%player_name%&f, You crafted &c{result}'
 
 # Message sent when reloading plugin
-reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7(.'
+reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
 # Invalid permission message
 no-permission: '&cYou do not have permission to use this command.'

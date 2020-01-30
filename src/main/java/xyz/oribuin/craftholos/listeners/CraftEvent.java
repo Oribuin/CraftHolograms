@@ -6,20 +6,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerLocaleChangeEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.event.inventory.InventoryType;
 import xyz.oribuin.craftholos.CraftHolograms;
-import xyz.oribuin.craftholos.persist.Ch;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import xyz.oribuin.craftholos.hooks.Placeholders;
+import xyz.oribuin.craftholos.persist.Chat;
 
 public class CraftEvent implements Listener {
 
@@ -30,7 +23,7 @@ public class CraftEvent implements Listener {
     }
 
     @EventHandler
-    public void onCraftingTable(CraftItemEvent event) {
+    public void onCraftItem(CraftItemEvent event) {
         /**
          * Variable Defining
          * Variables:
@@ -52,6 +45,11 @@ public class CraftEvent implements Listener {
 
         if (!player.hasPermission("craftholo.use")) return;
 
+
+        if (event.getInventory().getType() != InventoryType.WORKBENCH) return;
+
+        System.out.print(event.getInventory().getLocation());
+
         /*
          * Defining location settings and variables
          * if the location is null: do nothing
@@ -67,7 +65,7 @@ public class CraftEvent implements Listener {
          * Center the hologram in the middle of the Crafting Table
          */
 
-        location.setY(location.getY() + 2);
+        location.setY(location.getY() + plugin.getConfig().getInt("y-axis"));
         location.setX(location.getX() + 0.500);
         location.setZ(location.getZ() + 0.500);
 
@@ -78,17 +76,14 @@ public class CraftEvent implements Listener {
         Hologram holo = HologramsAPI.createHologram(plugin, location);
         Material result = event.getRecipe().getResult().getType();
 
-        /*
-         * If the option to display name is enabled, add name line to hologram
-         */
+        if (event.getInventory().getLocation().getWorld() != null) {
+            if (event.getInventory().getLocation().getWorld().getBlockAt(event.getInventory().getLocation()).getType() != Material.CRAFTING_TABLE)
+                return;
+        }
 
-        if (plugin.getConfig().getBoolean("name-display", true))
-            holo.appendTextLine(Ch.cl(plugin.getConfig().getString("format")
-                    .replaceAll("\\{result}", result.name().replaceAll("_", " "))));
-
-        /*
-         * If options to display item is enabled, add item to as a line on hologram
-         */
+        for (String line : plugin.getConfig().getStringList("hologram-format")) {
+            holo.appendTextLine(Placeholders.apply(player, Chat.cl(line).replaceAll("\\{result}", result.name().replaceAll("_", " ").toLowerCase())));
+        }
 
         if (plugin.getConfig().getBoolean("item-display", true))
             holo.appendItemLine(event.getRecipe().getResult());
@@ -96,12 +91,7 @@ public class CraftEvent implements Listener {
         /*
          * Wait (duration) seconds before deleting hologram
          */
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            @Override
-            public void run() {
-                holo.delete();
-            }
-        }, duration);
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, holo::delete, duration);
 
     }
 }

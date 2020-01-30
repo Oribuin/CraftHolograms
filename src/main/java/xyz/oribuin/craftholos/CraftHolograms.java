@@ -6,7 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import xyz.oribuin.craftholos.cmds.CmdReload;
 import xyz.oribuin.craftholos.hooks.Metrics;
 import xyz.oribuin.craftholos.listeners.CraftEvent;
-import xyz.oribuin.craftholos.persist.Ch;
+import xyz.oribuin.craftholos.listeners.TableBreak;
+import xyz.oribuin.craftholos.persist.Chat;
 
 public class CraftHolograms extends JavaPlugin {
 
@@ -20,12 +21,21 @@ public class CraftHolograms extends JavaPlugin {
          * Registering commands
          */
 
-        getCommand("crafthreload").setExecutor(new CmdReload(this));
+        getCommand("craftholo").setExecutor(new CmdReload(this));
 
         /**
          * Registering events
          */
         pm.registerEvents(new CraftEvent(this), this);
+        pm.registerEvents(new TableBreak(this), this);
+
+        /*
+         * PlaceholderAPI Stuff
+         */
+
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) {
+            this.getServer().getConsoleSender().sendMessage(Chat.cl("&7[&bCraftHolograms&7] &cPlaceholderAPI is not installed, therefor PlaceholderAPI placeholders will not work."));
+        }
 
         /*
          * BStats Metrics
@@ -44,7 +54,7 @@ public class CraftHolograms extends JavaPlugin {
          * Startup Message
          */
 
-        this.getServer().getConsoleSender().sendMessage(Ch.cl(
+        this.getServer().getConsoleSender().sendMessage(Chat.cl(
                 "\n\n&e******************\n" +
                         "\n&6Plugin: &f" + this.getDescription().getName() +
                         "\n&6Author: &f" + this.getDescription().getAuthors().get(0) +
