@@ -8,6 +8,9 @@
 # Default: true
 plugin-enabled: true
 
+reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
+no-permission: '&cYou do not have permission to use this command.'
+
 # List of worlds this feature is disabled in.
 disabled-worlds:
   - 'disabled-world-one'
@@ -34,8 +37,3 @@ item-display: true
 hologram-format:
   - '&7[&bCraftHolograms&7]'
   - '&c%player_name%&f, You crafted &c{result}'
-
-# Message sent when reloading plugin
-reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
-# Invalid permission message
-no-permission: '&cYou do not have permission to use this command.'
