@@ -48,7 +48,7 @@ public class CraftEvent implements Listener {
 
         if (event.getInventory().getType() != InventoryType.WORKBENCH) return;
 
-        System.out.print(event.getInventory().getLocation());
+        if (event.getRecipe().getResult().getType() == Material.AIR) return;
 
         /*
          * Defining location settings and variables
@@ -69,6 +69,12 @@ public class CraftEvent implements Listener {
         location.setX(location.getX() + 0.500);
         location.setZ(location.getZ() + 0.500);
 
+
+        HologramsAPI.getHolograms(plugin).forEach(hologram -> {
+            if (hologram.getLocation().equals(location) && hologram.size() > 1) {
+                hologram.delete();
+            }
+        });
         /*
          * Create the hologram at the correct location
          * Define the result variable
@@ -82,7 +88,8 @@ public class CraftEvent implements Listener {
         }
 
         for (String line : plugin.getConfig().getStringList("hologram-format")) {
-            holo.appendTextLine(Placeholders.apply(player, Chat.cl(line).replaceAll("\\{result}", result.name().replaceAll("_", " ").toLowerCase())));
+            if (plugin.getConfig().getBoolean("text-enabled", true))
+                holo.appendTextLine(Placeholders.apply(player, Chat.cl(line).replaceAll("\\{result}", result.name().replaceAll("_", " ").toLowerCase())));
         }
 
         if (plugin.getConfig().getBoolean("item-display", true))

@@ -8,6 +8,9 @@
 # Default: true
 plugin-enabled: true
 
+reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
+no-permission: '&cYou do not have permission to use this command.'
+
 # List of worlds this feature is disabled in.
 disabled-worlds:
   - 'disabled-world-one'
@@ -25,17 +28,17 @@ y-axis: 2.5
 # Default: true
 sync-holograms: true
 
+# Should there be hologram text above the crafting table?
+# Default: true
+text-display: true
+
 # Should the item crafted by displayed under the text?
 # Default: true
 item-display: true
 
 # Hologram Format (Supports PlaceholderAPI)
+# This will only display if "text-display" is enabled.
 # Result Item Name Placeholder: {result}
 hologram-format:
   - '&7[&bCraftHolograms&7]'
   - '&c%player_name%&f, You crafted &c{result}'
-
-# Message sent when reloading plugin
-reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
-# Invalid permission message
-no-permission: '&cYou do not have permission to use this command.'

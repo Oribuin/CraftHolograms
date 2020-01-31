@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'xyz.oribuin.craftholos'
-version '1.0'
+version '1.0.2'
 
 sourceCompatibility = 1.8
 
