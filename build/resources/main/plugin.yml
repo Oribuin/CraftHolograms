@@ -1,6 +1,6 @@
 name: CraftHolograms
 main: xyz.oribuin.craftholos.CraftHolograms
-version: 1.0.1
+version: 1.0.3
 author: Oribuin
 api-version: "1.13"
 description: Crafting item result previews above crafting table.

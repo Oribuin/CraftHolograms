@@ -5,8 +5,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.oribuin.craftholos.cmds.CmdReload;
 import xyz.oribuin.craftholos.hooks.Metrics;
-import xyz.oribuin.craftholos.listeners.CraftEvent;
-import xyz.oribuin.craftholos.listeners.TableBreak;
+import xyz.oribuin.craftholos.listeners.CraftingTable;
+import xyz.oribuin.craftholos.listeners.JoinNotification;
 import xyz.oribuin.craftholos.persist.Chat;
 
 public class CraftHolograms extends JavaPlugin {
@@ -26,9 +26,8 @@ public class CraftHolograms extends JavaPlugin {
         /**
          * Registering events
          */
-        pm.registerEvents(new CraftEvent(this), this);
-        pm.registerEvents(new TableBreak(this), this);
-
+        pm.registerEvents(new JoinNotification(this), this);
+        pm.registerEvents(new CraftingTable(this), this);
         /*
          * PlaceholderAPI Stuff
          */

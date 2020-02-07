@@ -6,15 +6,12 @@ plugins {
 }
 
 group 'xyz.oribuin.craftholos'
-version '1.0.2'
+version '1.0.3'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    flatDir {
-        dirs 'dependencies'
-    }
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         content {
