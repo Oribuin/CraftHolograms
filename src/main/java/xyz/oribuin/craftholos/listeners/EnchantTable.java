@@ -1,14 +1,20 @@
-package me.oribuin.randomplugin.listeners;
+package xyz.oribuin.craftholos.listeners;
 
-import me.oribuin.randomplugin.RandomPlugin;
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
+import com.sun.tools.javac.jvm.Items;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
+import xyz.oribuin.craftholos.CraftHolograms;
+import xyz.oribuin.craftholos.hooks.Placeholders;
+import xyz.oribuin.craftholos.persist.Chat;
 
 public class EnchantTable implements Listener {
 
