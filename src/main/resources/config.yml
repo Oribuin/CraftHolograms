@@ -26,3 +26,28 @@ crafting-table:
     - '&7[&bCraftHolograms&7]'
     - '&c%player_name%&f, You crafted &c{amount}&fx &c{result}'
   item-display: true
+
+#
+# Settings for the Enchantment Table
+#
+
+enchant-table:
+  enabled: true
+  duraation: 5
+  y-axis: 2.5
+  sync-holograms: true
+  text-display: true
+  hologram-format:
+    - '&7[&bCraftHolograms&7]'
+    - '&c%player_name%&f, You have enchanted {item} with {enchantment} {level}'
+  item-settings:
+    # Should the item be displayed?
+    display: true
+    # This option is to choose what you want displayed when enchanted
+    # "ENCHANTED-ITEM" represents the item that was enchanted.
+    # "CHOSEN" represents any normal item
+    value: 'ENCHANTED-ITEM'
+    # This is the item defined when you use "CHOSEN"
+    # ignore if you are using "ENCHANTED-ITEM"
+    type: 'ENCHANTED-BOOK'
+
