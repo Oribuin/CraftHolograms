@@ -70,4 +70,24 @@ public class EnchantTable implements Listener {
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, holo::delete, duration);
     }
+    
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        Block block = event.getBlock();
+
+        if (block.getType().equals(Material.ENCHANTMENT_TABLE)) {
+            if (plugin.getConfig().getBoolean("enchant-table.sync-holograms", true)) {
+                HologramsAPI.getHolograms(plugin).forEach(hologram -> {
+                    Location blockLocation = block.getLocation();
+                    Location holoLocation = hologram.getLocation();
+
+                    if (holoLocation.getY() == blockLocation.getY() + plugin.getConfig().getInt("enchant-table.y-axis")
+                            && holoLocation.getX() - 0.500 == block.getX()
+                            && holoLocation.getZ() - 0.500 == block.getZ()) {
+                        hologram.delete();
+                    }
+                });
+            }
+        }
+    }
 }
