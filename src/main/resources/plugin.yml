@@ -1,16 +1,12 @@
-name: CraftHolograms
-main: xyz.oribuin.craftholos.CraftHolograms
+name: EternalCrafting
+main: xyz.oribuin.eternalcrafting.EternalCrafting
 version: @version@
 author: Oribuin
 api-version: "1.13"
-description: Crafting item result previews above crafting table.
+description: Customize your crafting with special effects and abilities.
 website: http://oribuin.xyz/
-depend:
-  - HolographicDisplays
-softdepend:
-  - PlaceholderAPI
-
+softdepend: [PlaceholderAPI, HolographicDisplays, PlayerParticles]
 commands:
-  craftholo:
-    description: Reload CraftHolograms.
-    usage: /craftholo
+  eternalcraft:
+    description: Main Command
+    usage: /eternalcraft

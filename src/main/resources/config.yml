@@ -1,53 +1,50 @@
-#
-# | CraftHolograms by Oribuin |
-# | Display the item crafted above a workbench. |
-#
-# https://github.com/Oribuin/CraftHolograms/
 
-# Should the plugin be enabled?
-# Default: true
-plugin-enabled: true
 
-reload: '&7You have reloaded &bCraftHolograms &7(&a{version}&7).'
-no-permission: '&cYou do not have permission to use this command.'
-
-# List of worlds this feature is disabled in.
 disabled-worlds:
-  - 'disabled-world-one'
-  - 'disabled-world-two'
+  - 'disabled-world-1'
+  - 'disabled-world-2'
 
-crafting-table:
+# Hologram Settings
+hologram-settings:
   enabled: true
+  y-offset: 1
+  # Time in seconds until hologram is deleted
   duration: 5
-  y-axis: 2.5
+  # Should the hologram be destroyed when the table is
   sync-holograms: true
   text-display: true
-  hologram-format:
-    - '&7[&bCraftHolograms&7]'
-    - '&c%player_name%&f, You crafted &c{amount}&fx &c{result}'
+
+  # Should there be items under the hologram when you craft?
   item-display: true
-
-#
-# Settings for the Enchantment Table
-#
-
-enchant-table:
-  enabled: true
-  duraation: 5
-  y-axis: 2.5
-  sync-holograms: true
-  text-display: true
-  hologram-format:
-    - '&7[&bCraftHolograms&7]'
-    - '&c%player_name%&f, You have enchanted {item} with {enchantment} {level}'
+  # Configure the Item Settings
   item-settings:
-    # Should the item be displayed?
-    display: true
-    # This option is to choose what you want displayed when enchanted
-    # "ENCHANTED-ITEM" represents the item that was enchanted.
-    # "CHOSEN" represents any normal item
-    value: 'ENCHANTED-ITEM'
-    # This is the item defined when you use "CHOSEN"
-    # ignore if you are using "ENCHANTED-ITEM"
-    type: 'ENCHANTED-BOOK'
+    # Leave as normal, Custom Items are coming soon.
+    type: 'NORMAL'
 
+  # Format of text on hologram
+  format:
+    - '&b» &fYou have crafted &bx%amount% &f%item% &b«'
+
+# Sound Settings
+sound-settings:
+  enabled: true
+  # If false, sounds will play for anyone standing near the crafting table
+  player-only: true
+  # Find list of available sounds here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+  sound: 'ENTITY_ARROW_HIT_PLAYER'
+  volume: 100
+
+# Particle Settings | Requires PlayerParticles (https://www.spigotmc.org/resources/playerparticles.40261/)
+particle-settings:
+  enabled: true
+  # Unavailable Particles: BLOCK_CRACK, DUST, ITEM_CRACK, FALLING_DUST
+  # Particles: https://github.com/Esophose/PlayerParticles/blob/master/src/main/java/dev/esophose/playerparticles/particles/ParticleEffect.java
+  particle: 'WITCH'
+  # Duration until particle is removed in seconds
+  duration: 5
+  # The style for the particles
+  style: 'orbit'
+  # The offset Y axis of the particles
+  y-offset: 0
+
+# End of config :)
