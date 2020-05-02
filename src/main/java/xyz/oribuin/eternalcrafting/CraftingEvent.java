@@ -44,6 +44,12 @@ public class CraftingEvent implements Listener {
                 || player.getLocation() == location)
             return;
 
+        if (ConfigManager.Setting.ITEM_BLACKLIST.getStringList().contains(craftedItem.getType().name().toUpperCase())) {
+            if (!player.hasPermission("eternalcraft.bypass")) {
+                event.setCancelled(true);
+            }
+        }
+
         if (location.getWorld() == null) return;
         Location holoLocation = new Location(location.getWorld(), location.getX() + 0.500, location.getY() + 1 + ConfigManager.Setting.HOLOGRAMS_OFFSET.getDouble(), location.getZ() + 0.500);
 
@@ -83,8 +89,6 @@ public class CraftingEvent implements Listener {
 
             particleLocation = new Location(holoLocation.getWorld(), holoLocation.getX(), location.getY() + ConfigManager.Setting.PARTICLES_OFFSET.getDouble(), holoLocation.getZ());
 
-            ppAPI.removeFixedEffectsInRange(particleLocation, 1);
-
             FixedParticleEffect fixedParticle = ppAPI.createFixedParticleEffect(Bukkit.getConsoleSender(), particleLocation,
                     ParticleEffect.fromName(ConfigManager.Setting.PARTICLES_PARTICLE.getString()),
                     ParticleStyle.fromName(ConfigManager.Setting.PARTICLES_STYLE.getString()));
@@ -106,6 +110,11 @@ public class CraftingEvent implements Listener {
                 location.getWorld().playSound(holoLocation, sound, volume, 1);
             }
         }
+
+        if (ConfigManager.Setting.COMMANDS_ENABLED.getBoolean()) {
+            ConfigManager.Setting.COMMANDS_LIST.getStringList().forEach(command -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command));
+        }
+
     }
 
     @EventHandler

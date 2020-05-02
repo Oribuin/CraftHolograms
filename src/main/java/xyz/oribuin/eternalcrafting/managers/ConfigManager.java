@@ -37,8 +37,14 @@ public class ConfigManager extends Manager {
         PARTICLES_PARTICLE("particle-settings.particle"),
         PARTICLES_DURATION("particle-settings.duration"),
         PARTICLES_STYLE("particle-settings.style"),
-        PARTICLES_OFFSET("particle-settings.y-offset");
+        PARTICLES_OFFSET("particle-settings.y-offset"),
 
+        // Command Settings
+        COMMANDS_ENABLED("command-settings.enabled"),
+        COMMANDS_LIST("command-settings.commands"),
+
+        // Item Settings
+        ITEM_BLACKLIST("item-settings.blocked-items");
 
         private final String key;
         private Object value = null;

@@ -1,10 +1,13 @@
-
+#
+# » EternalCrafting by Oribuin «
+#
+# Customize your Crafting with Particles, Sounds and Holograms
 
 disabled-worlds:
   - 'disabled-world-1'
   - 'disabled-world-2'
 
-# Hologram Settings
+# Hologram Settings | Requires HolographicDisplays
 hologram-settings:
   enabled: true
   y-offset: 1
@@ -12,8 +15,10 @@ hologram-settings:
   duration: 5
   # Should the hologram be destroyed when the table is
   sync-holograms: true
-  text-display: true
+  # If you have Text-Display and Item-Display set to false, it may cause an error.
 
+  # Should there be text when you craft?
+  text-display: true
   # Should there be items under the hologram when you craft?
   item-display: true
   # Configure the Item Settings
@@ -47,4 +52,17 @@ particle-settings:
   # The offset Y axis of the particles
   y-offset: 0
 
+# Command Settings | All commands are executed by console
+command-settings:
+  # Default: false
+  enabled: false
+  # List all commands executed on craft
+  commands:
+    - 'say Hello!'
+
+# Item Settings
+item-settings:
+  # List of items that cannot be crafted | Make sure blocked items are uppercase
+  blocked-items:
+    - 'BEDROCK'
 # End of config :)

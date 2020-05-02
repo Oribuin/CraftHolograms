@@ -1,2 +1,6 @@
+# Misc
 reload: '&bYou have reloaded EternalCrafting (%version%)'
+
+# Error Messages
 invalid-permission: '&cYou do not have permission to execute this command.'
+invalid-command: '&cThat is not a valid command.'

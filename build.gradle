@@ -6,7 +6,8 @@ plugins {
 }
 
 group 'xyz.oribuin'
-version '1.1.0'
+version '1.1.0-B1'
+compileJava.options.encoding('UTF-8')
 
 targetCompatibility = 1.8
 sourceCompatibility = 1.8
@@ -23,12 +24,14 @@ dependencies {
     shadow 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
     compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.0'
     compileOnly 'me.clip:placeholderapi:2.10.5'
-    compileOnly 'dev.esophose:playerparticles:7.9'
+    compileOnly 'dev.esophose:playerparticles:7.10'
+    implementation 'dev.rosewood:guiframework:1.1.0'
 }
 
 shadowJar {
     mergeServiceFiles()
     minimize()
+    relocate('dev.rosewood.guiframework', 'xyz.oribuin.eternalcrafting.libs.guiframework')
     archiveName 'EternalCrafting-' + project.property("version") + ".jar"
 }
 

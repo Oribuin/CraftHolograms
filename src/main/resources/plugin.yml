@@ -1,12 +1,13 @@
 name: EternalCrafting
 main: xyz.oribuin.eternalcrafting.EternalCrafting
-version: @version@
+version: '@version@'
 author: Oribuin
 api-version: "1.13"
-description: Customize your crafting with special effects and abilities.
+description: Customize your Crafting with Particles, Sounds and Holograms
 website: http://oribuin.xyz/
 softdepend: [PlaceholderAPI, HolographicDisplays, PlayerParticles]
 commands:
   eternalcraft:
     description: Main Command
     usage: /eternalcraft
+    aliases: [etcrafing]

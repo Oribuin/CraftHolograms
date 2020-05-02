@@ -35,6 +35,8 @@ public class EternalCrafting extends JavaPlugin {
             this.ppAPI = PlayerParticlesAPI.getInstance();
         } else {
             Bukkit.getLogger().warning("PlayerParticles Not Installed - Particles are disabled.");
+            getConfig().set("particle-settings.enabled", false);
+            saveConfig();
         }
 
         if (pm.getPlugin("PlaceholderAPI") == null) {
@@ -43,19 +45,13 @@ public class EternalCrafting extends JavaPlugin {
 
         if (pm.getPlugin("HolographicDisplays") == null) {
             Bukkit.getLogger().warning("HolographicDisplays Not Installed - Holograms are disabled.");
+            getConfig().set("hologram-settings.enabled", false);
+            saveConfig();
         }
 
         pm.registerEvents(new CraftingEvent(), this);
     }
 
-    @Override
-    public void onDisable() {
-        this.reload();
-
-        if (ppAPI != null) {
-            ppAPI.removeFixedEffectsInRange(new CraftingEvent().particleLocation, 1);
-        }
-    }
     public void reload() {
         this.commandManager.reload();
         this.configManager.reload();
